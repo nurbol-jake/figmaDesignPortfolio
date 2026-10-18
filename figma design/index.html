@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0B0B0C">
+  <meta name="description" content="Нурбол Гик — студент и автор образовательного проекта Level Up Bilim.">
+  <title>Нурбол — идеи, которые двигают вперёд</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0B0B0C;
+      --surface: #111113;
+      --text: #F2F0EB;
+      --muted: #8A8A8F;
+      --line: #2a2a2b;
+      --acid: #C6FF3D;
+      --display: "Space Grotesk", "Arial", sans-serif;
+      --body: "Inter", "Arial", sans-serif;
+      --gutter: clamp(22px, 6.2vw, 96px);
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+    body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--body); -webkit-font-smoothing: antialiased; }
+    body::after { position: fixed; z-index: 20; inset: 0; pointer-events: none; content: ""; opacity: .13; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.88' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E"); }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    .site-header { position: fixed; z-index: 15; top: 0; right: 0; left: 0; height: 70px; padding: 0 var(--gutter); display: flex; align-items: center; justify-content: space-between; gap: 28px; border-bottom: 1px solid transparent; transition: background .25s, border-color .25s; }
+    .site-header.scrolled { border-color: var(--line); background: #0b0b0ce8; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+    .logo { flex: 0 0 auto; font: 700 12px var(--display); letter-spacing: .13em; }
+    .logo span { color: var(--acid); }
+    .nav { height: 100%; display: flex; align-items: center; gap: clamp(18px, 3.1vw, 46px); overflow: auto; scrollbar-width: none; }
+    .nav::-webkit-scrollbar { display: none; }
+    .nav a { position: relative; display: grid; height: 100%; align-items: center; color: var(--muted); font-size: 10px; white-space: nowrap; transition: color .2s; }
+    .nav a::after { position: absolute; right: 0; bottom: 0; left: 0; height: 2px; background: var(--acid); content: ""; transform: scaleX(0); transform-origin: left; transition: transform .2s; }
+    .nav a:hover, .nav a.active { color: var(--text); }
+    .nav a.active::after { transform: scaleX(1); }
+    .header-note { flex: 0 0 auto; color: var(--muted); font-size: 9px; }
+    .header-note i { display: inline-block; width: 6px; height: 6px; margin-right: 7px; border-radius: 50%; background: var(--acid); }
+    main { overflow: clip; }
+    .hero { position: relative; min-height: 780px; padding: 139px var(--gutter) 35px; display: flex; flex-direction: column; justify-content: space-between; }
+    .hero-top { display: flex; justify-content: space-between; color: var(--muted); font-size: 9px; letter-spacing: .14em; text-transform: uppercase; }
+    .hero-top span:last-child { text-align: right; }
+    .hero-main { position: relative; flex: 1; display: flex; align-items: center; min-height: 480px; }
+    .hero-title { position: relative; z-index: 2; width: 100%; margin: 38px 0 0 -.045em; font: 700 clamp(112px, 24.2vw, 365px)/.76 var(--display); letter-spacing: -.105em; white-space: nowrap; }
+    .hero-title { transform: translateY(-75px); }
+    .hero-title span { color: var(--acid); }
+    .hero-photo { position: absolute; z-index: 3; top: 50%; right: clamp(12px, 9vw, 145px); width: clamp(210px, 26vw, 385px); height: clamp(290px, 37vw, 500px); margin: 0; overflow: hidden; border: 1px solid #ffffff30; transform: translateY(-46%) rotate(2deg); }
+    .hero-photo img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: 52% 34%; filter: saturate(.62) brightness(.84); }
+    .hero-photo::after { position: absolute; inset: 0; border: 1px solid #C6FF3D40; content: ""; pointer-events: none; }
+    .photo-fallback { position: absolute; inset: 0; display: none; place-content: center; gap: 12px; background: #151517; color: var(--muted); font: 10px var(--body); letter-spacing: .12em; text-align: center; }
+    .photo-fallback b { color: var(--acid); font: 600 33px var(--display); }
+    .hero-photo.image-missing img { display: none; }
+    .hero-photo.image-missing .photo-fallback { display: grid; }
+    .hero-caption { position: absolute; right: 12px; bottom: 12px; left: 12px; z-index: 2; display: flex; justify-content: space-between; color: #f2f0eb; font-size: 7px; letter-spacing: .12em; text-shadow: 0 1px 7px #000; }
+    .hero-index { position: absolute; z-index: 4; top: 16px; left: 17px; color: var(--acid); font: 10px var(--display); }
+    .hero-description { position: absolute; z-index: 4; bottom: 15px; left: 2px; max-width: 390px; }
+    .hero-role { max-width: 355px; margin: 0 0 16px; color: var(--text); font: 500 12px/1.8 var(--body); }
+    .hero-bio { max-width: 385px; margin: 0; color: var(--muted); font-size: 10px; line-height: 1.9; }
+    .text-link { display: inline-flex; align-items: center; gap: 15px; margin-top: 21px; padding-bottom: 6px; border-bottom: 1px solid var(--acid); color: var(--text); font-size: 10px; transition: color .2s; }
+    .text-link span { color: var(--acid); font-size: 17px; transition: transform .2s; }
+    .text-link:hover { color: var(--acid); }
+    .text-link:hover span { transform: translateX(4px); }
+    .hero-bottom { display: flex; justify-content: space-between; align-items: end; gap: 30px; padding-top: 18px; border-top: 1px solid var(--line); }
+    .micro-label { color: var(--muted); font-size: 8px; letter-spacing: .14em; text-transform: uppercase; }
+    .stack { display: flex; flex-wrap: wrap; justify-content: end; gap: 7px; }
+    .stack span { padding: 7px 10px; border: 1px solid #353536; color: #c5c3bd; font-size: 8px; }
+    .stack span:last-child { color: var(--muted); }
+    .section { padding: 112px var(--gutter); border-top: 1px solid var(--line); }
+    .section-head { display: flex; align-items: baseline; gap: 18px; margin-bottom: 51px; }
+    .section-number { color: var(--acid); font: 500 11px var(--display); }
+    .section-overline { color: var(--muted); font-size: 8px; letter-spacing: .17em; text-transform: uppercase; }
+    .section-title { margin: 0; font: 600 clamp(39px, 7vw, 88px)/.98 var(--display); letter-spacing: -.075em; }
+    .section-title .accent { color: var(--acid); }
+    .skills-intro { max-width: 410px; margin: -25px 0 44px auto; color: var(--muted); font-size: 10px; line-height: 1.8; }
+    .skill-grid { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+    .skill { min-height: 177px; padding: 22px 24px 26px; display: grid; grid-template-columns: 40px 1fr; grid-template-rows: auto 1fr; gap: 19px 12px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); transition: background .2s; }
+    .skill:hover { background: #c6ff3d08; }
+    .skill-number { color: var(--acid); font: 12px var(--display); }
+    .skill h3 { margin: 0; font: 500 17px var(--display); letter-spacing: -.04em; }
+    .skill p { grid-column: 2; max-width: 360px; margin: 0; color: var(--muted); font-size: 10px; line-height: 1.8; }
+    .projects-heading { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 49px; }
+    .projects-heading p { max-width: 265px; margin: 0 0 5px; color: var(--muted); font-size: 10px; line-height: 1.8; }
+    .project-grid { display: grid; grid-template-columns: 1.25fr .75fr; grid-template-rows: 250px 235px; gap: 16px; }
+    .project { position: relative; min-width: 0; overflow: hidden; border: 1px solid var(--line); background: var(--surface); }
+    .project-main { grid-row: 1 / 3; }
+    .project-art { position: absolute; inset: 0; overflow: hidden; }
+    .education-art { background: #151714; }
+    .education-art::before { position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent 0 58px, #ffffff08 59px), repeating-linear-gradient(90deg, transparent 0 58px, #ffffff08 59px); content: ""; mask-image: linear-gradient(120deg, #000, transparent 85%); }
+    .map-orbit { position: absolute; top: 42%; left: 50%; width: min(58vw, 510px); aspect-ratio: 1; border: 1px solid #C6FF3D60; border-radius: 50%; transform: translate(-50%, -50%); }
+    .map-orbit::before, .map-orbit::after { position: absolute; inset: 12%; border: 1px solid #ffffff21; border-radius: 50%; content: ""; }
+    .map-orbit::after { inset: 28%; border-color: #C6FF3D54; }
+    .map-center { position: absolute; top: 42%; left: 50%; width: 76px; height: 76px; display: grid; place-items: center; border-radius: 50%; background: var(--acid); color: var(--bg); font: 600 18px var(--display); transform: translate(-50%, -50%); }
+    .map-dot { position: absolute; z-index: 1; width: 8px; height: 8px; border: 1px solid var(--bg); border-radius: 50%; background: var(--acid); box-shadow: 0 0 0 5px #c6ff3d25; }
+    .dot-a { top: 27%; left: 31%; }.dot-b { top: 51%; right: 20%; }.dot-c { bottom: 22%; left: 42%; }
+    .art-top, .art-bottom { position: absolute; z-index: 2; color: var(--muted); font-size: 7px; letter-spacing: .16em; }
+    .art-top { top: 19px; left: 20px; }
+    .art-bottom { bottom: 18px; left: 20px; }
+    .project-copy { position: absolute; z-index: 3; right: 22px; bottom: 22px; left: 22px; }
+    .project-main .project-copy { right: 28px; bottom: 26px; left: 28px; }
+    .project-meta { display: flex; flex-wrap: wrap; gap: 8px 15px; align-items: center; margin-bottom: 13px; color: var(--muted); font-size: 7px; letter-spacing: .12em; text-transform: uppercase; }
+    .project-meta .status { color: var(--acid); }
+    .project h3 { max-width: 540px; margin: 0 0 11px; font: 600 clamp(23px, 4vw, 49px)/1 var(--display); letter-spacing: -.065em; }
+    .project p { max-width: 505px; margin: 0; color: #b7b6b1; font-size: 9px; line-height: 1.8; }
+    .project-main .project-copy { background: linear-gradient(0deg, #0b0b0cf5 0%, #0b0b0cae 65%, transparent 100%); padding: 50px 4px 0; }
+    .project-main h3 { font-size: clamp(33px, 5vw, 59px); }
+    .project-film { background: #171714; }
+    .film-art { position: absolute; inset: 0; background: linear-gradient(150deg, #292820 0%, #191918 58%, #101011 100%); }
+    .film-disc { position: absolute; top: 17%; right: 12%; width: 150px; aspect-ratio: 1; border: 1px solid #C6FF3D8a; border-radius: 50%; box-shadow: 0 0 0 15px #c6ff3d0a, 0 0 0 34px #c6ff3d08; }
+    .film-disc::after { position: absolute; inset: 42%; border-radius: 50%; background: var(--acid); content: ""; }
+    .film-letter { position: absolute; top: 24%; left: 10%; color: #f2f0eb18; font: 700 clamp(100px, 17vw, 210px)/1 var(--display); letter-spacing: -.1em; }
+    .project-film h3 { font-size: clamp(22px, 3vw, 34px); }
+    .project-film p { font-size: 8px; }
+    .project-link { display: inline-flex; gap: 8px; align-items: center; margin-top: 12px; color: var(--acid); font-size: 8px; }
+    .project-link span { font-size: 13px; }
+    .project-link:hover { text-decoration: underline; text-underline-offset: 4px; }
+    .stats { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+    .stat { min-height: 173px; padding: 18px 15px; display: flex; flex-direction: column; justify-content: space-between; gap: 24px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .stat-value { color: var(--acid); font: 600 clamp(26px, 4.2vw, 52px)/1 var(--display); letter-spacing: -.08em; white-space: nowrap; }
+    .stat-label { max-width: 155px; color: var(--muted); font-size: 9px; line-height: 1.7; }
+    .timeline { margin-top: 68px; border-top: 1px solid var(--line); }
+    .timeline-row { min-height: 61px; display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: center; border-bottom: 1px solid var(--line); }
+    .timeline-year { color: var(--acid); font: 11px var(--display); }
+    .timeline-copy { color: #c4c2bc; font-size: 10px; }
+    .site-footer { padding: 28px var(--gutter) 35px; display: grid; grid-template-columns: 1fr auto; gap: 24px; border-top: 1px solid var(--line); }
+    .footer-title { color: var(--muted); font-size: 8px; letter-spacing: .14em; }
+    .footer-links { display: flex; flex-wrap: wrap; justify-content: end; gap: 9px 23px; }
+    .footer-links a { color: #d0cec8; font-size: 9px; transition: color .2s; }
+    .footer-links a:hover { color: var(--acid); }
+    .copyright { grid-column: 1 / -1; margin-top: 7px; color: #77777b; font-size: 8px; }
+    .reveal { opacity: 1; transform: none; }
+    .js .reveal { opacity: 0; transform: translateY(20px); transition: opacity .65s ease, transform .65s ease; }
+    .js .reveal.visible { opacity: 1; transform: translateY(0); }
+    @media (min-width: 1500px) { .hero, .section, .site-footer { padding-right: max(var(--gutter), calc((100% - 1360px) / 2)); padding-left: max(var(--gutter), calc((100% - 1360px) / 2)); } }
+    @media (max-width: 800px) {
+      .site-header { gap: 18px; }
+      .header-note { display: none; }
+      .hero { min-height: 730px; }
+      .hero-title { font-size: clamp(105px, 22vw, 180px); }
+      .hero-photo { right: 3vw; width: 34vw; height: 44vw; max-height: 440px; }
+      .hero-description { max-width: 340px; }
+      .project-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 300px; }
+      .project-main { grid-row: auto; }
+      .stats { grid-template-columns: repeat(3, 1fr); }
+      .stat { min-height: 145px; }
+    }
+    @media (max-width: 560px) {
+      html { scroll-padding-top: 66px; }
+      .site-header { height: 62px; padding: 0 18px; gap: 16px; }
+      .logo { font-size: 11px; }
+      .nav { flex: 1; justify-content: flex-start; gap: 20px; }
+      .nav a { font-size: 9px; }
+      .hero { min-height: 790px; padding: 97px 20px 22px; }
+      .hero-top { font-size: 7px; }
+      .hero-main { min-height: 545px; align-items: flex-start; }
+      .hero-title { z-index: 4; margin-top: 57px; font-size: clamp(89px, 22.5vw, 133px); }
+      .hero-title { transform: none; }
+      .hero-photo { top: 126px; right: 1px; width: 56vw; height: 72vw; max-height: 375px; transform: rotate(2deg); }
+      .hero-index { top: 139px; right: calc(56vw - 7px); left: auto; }
+      .hero-description { bottom: 4px; left: 0; max-width: 91%; }
+      .hero-role { max-width: 315px; font-size: 10px; }
+      .hero-bio { max-width: 330px; font-size: 9px; }
+      .hero-bottom { align-items: flex-start; flex-direction: column; gap: 12px; padding-top: 13px; }
+      .stack { justify-content: flex-start; }
+      .section { padding: 76px 20px; }
+      .section-head { gap: 12px; margin-bottom: 37px; }
+      .section-title { font-size: clamp(42px, 11vw, 58px); }
+      .skills-intro { margin: -17px 0 27px; font-size: 9px; }
+      .skill-grid { grid-template-columns: 1fr; }
+      .skill { min-height: 123px; padding: 17px; grid-template-columns: 32px 1fr; gap: 11px; }
+      .skill h3 { font-size: 15px; }
+      .skill p { font-size: 9px; }
+      .projects-heading { align-items: flex-start; flex-direction: column; gap: 15px; margin-bottom: 30px; }
+      .projects-heading p { max-width: 290px; }
+      .project-grid { grid-template-columns: 1fr; grid-template-rows: 340px 285px; gap: 12px; }
+      .project-main { grid-row: auto; }
+      .project-main .project-copy { padding-top: 45px; }
+      .project-main h3 { font-size: 37px; }
+      .project-film h3 { font-size: 26px; }
+      .project p { font-size: 8px; }
+      .film-disc { width: 135px; }
+      .stats { grid-template-columns: 1fr 1fr; }
+      .stat { min-height: 122px; padding: 13px; gap: 19px; }
+      .stat-value { font-size: 34px; }
+      .stat-label { font-size: 8px; }
+      .timeline { margin-top: 47px; }
+      .timeline-row { grid-template-columns: 85px 1fr; gap: 10px; min-height: 57px; }
+      .timeline-year { font-size: 9px; }
+      .timeline-copy { font-size: 9px; line-height: 1.6; }
+      .site-footer { padding: 24px 20px 30px; grid-template-columns: 1fr; gap: 15px; }
+      .footer-links { justify-content: flex-start; gap: 16px; }
+      .copyright { grid-column: auto; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+      .js .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header" id="site-header">
+    <a class="logo" href="#home" aria-label="Нурбол — на главную">НУРБОЛ<span>.</span></a>
+    <nav class="nav" aria-label="Основная навигация">
+      <a href="#home" class="active">Главная</a>
+      <a href="#skills">Soft skills</a>
+      <a href="#projects">Проекты</a>
+      <a href="#achievements">Достижения</a>
+    </nav>
+    <span class="header-note"><i></i>ОТКРЫТ НОВОМУ</span>
+  </header>
+
+  <main>
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <div class="hero-top">
+        <span>Кыргызская Республика</span>
+        <span>Студент · 17 лет</span>
+      </div>
+      <div class="hero-main">
+        <h1 class="hero-title" id="hero-title">НУРБ<span>О</span>Л</h1>
+        <figure class="hero-photo" id="hero-photo">
+          <img src="photo.jpg" alt="Нурбол выступает перед микрофоном">
+          <div class="photo-fallback" aria-hidden="true"><b>Н.</b>Добавь photo.jpg</div>
+          <span class="hero-index">01 / 04</span>
+          <figcaption class="hero-caption"><span>НУРБОЛ «ГИК»</span><span>КЫРГЫЗСТАН</span></figcaption>
+        </figure>
+        <div class="hero-description">
+          <p class="hero-role">Студент · Программист · Волонтёр · Организатор проектов в образовании</p>
+          <p class="hero-bio">Учусь на 2 курсе колледжа Ала-Тоо. С 2023 года изучаю Java, Kotlin и Python. Хочу повлиять на развитие Кыргызской Республики и стать примером для студентов и школьников: через маленькие усилия можно достичь большего.</p>
+          <a class="text-link" href="#projects">Смотреть проекты <span>→</span></a>
+        </div>
+      </div>
+      <div class="hero-bottom">
+        <span class="micro-label">Стек и языки</span>
+        <div class="stack" aria-label="Языки программирования и языки">
+          <span>Java</span><span>Kotlin</span><span>Python</span><span>Китайский · базовый, продолжаю учить</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="skills" aria-labelledby="skills-title">
+      <div class="section-head reveal"><span class="section-number">02</span><span class="section-overline">Soft skills</span></div>
+      <h2 class="section-title reveal" id="skills-title">Сильные идеи.<br><span class="accent">Общее дело.</span></h2>
+      <p class="skills-intro reveal">Опыт, который я развиваю в проектах, волонтёрстве и общении с людьми.</p>
+      <div class="skill-grid">
+        <article class="skill reveal"><span class="skill-number">01</span><h3>Переговоры</h3><p>Общаюсь с предпринимателями и бизнесменами, представляю идеи и ищу возможности для сотрудничества.</p></article>
+        <article class="skill reveal"><span class="skill-number">02</span><h3>Волонтёрство</h3><p>Помогаю в общественных инициативах и участвую в мероприятиях.</p></article>
+        <article class="skill reveal"><span class="skill-number">03</span><h3>Организация проектов</h3><p>Веду образовательный проект, направленный на поддержку образования в регионах Кыргызстана.</p></article>
+        <article class="skill reveal"><span class="skill-number">04</span><h3>Публичная коммуникация</h3><p>Участвую в мероприятиях и веду переговоры, развивая навык общения с разной аудиторией.</p></article>
+        <article class="skill reveal"><span class="skill-number">05</span><h3>Самостоятельное обучение</h3><p>Изучаю Java, Kotlin и Python, а также продолжаю учить китайский язык.</p></article>
+      </div>
+    </section>
+
+    <section class="section" id="projects" aria-labelledby="projects-title">
+      <div class="section-head reveal"><span class="section-number">03</span><span class="section-overline">Проекты</span></div>
+      <div class="projects-heading reveal">
+        <h2 class="section-title" id="projects-title">Создаю то,<br>что <span class="accent">важно.</span></h2>
+        <p>Образование и история — две темы, которым я решил посвятить свои проекты.</p>
+      </div>
+      <div class="project-grid">
+        <article class="project project-main reveal">
+          <div class="project-art education-art" aria-hidden="true">
+            <span class="art-top">КЫРГЫЗСКАЯ РЕСПУБЛИКА · ОБРАЗОВАНИЕ</span>
+            <div class="map-orbit"><span class="map-dot dot-a"></span><span class="map-dot dot-b"></span><span class="map-dot dot-c"></span></div>
+            <span class="map-center">LB</span>
+            <span class="art-bottom">ЗНАНИЯ ДЛЯ КАЖДОГО РЕГИОНА</span>
+          </div>
+          <div class="project-copy">
+            <div class="project-meta"><span>01 / ОБРАЗОВАНИЕ</span><span class="status">В РАБОТЕ</span></div>
+            <h3>Level Up Bilim</h3>
+            <p>Веду проект, который помогает образованию в регионах Кыргызской Республики. Хочу, чтобы возможности учиться были доступны в разных уголках страны.</p>
+            <a class="project-link" href="#contact">Обсудить проект <span>↗</span></a>
+          </div>
+        </article>
+        <article class="project project-film reveal">
+          <div class="film-art" aria-hidden="true"><span class="film-letter">И</span><span class="film-disc"></span><span class="art-top">АВТОРСКИЙ ФИЛЬМ · 2025</span></div>
+          <div class="project-copy">
+            <div class="project-meta"><span>02 / КИНО</span><span>2025</span></div>
+            <h3>«Исхак Разаков»</h3>
+            <p>Фильм об И. Разакове продолжительностью около 20 минут. Снят в 2025 году, когда мне было 16 лет.</p>
+            <a class="project-link" href="#contact">Узнать о проекте <span>↗</span></a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="achievements" aria-labelledby="achievements-title">
+      <div class="section-head reveal"><span class="section-number">04</span><span class="section-overline">Достижения и опыт</span></div>
+      <h2 class="section-title reveal" id="achievements-title">Путь в <span class="accent">цифрах.</span></h2>
+      <div class="stats">
+        <article class="stat reveal"><strong class="stat-value">50+</strong><span class="stat-label">мероприятий и волонтёрских активностей</span></article>
+        <article class="stat reveal"><strong class="stat-value">≈25</strong><span class="stat-label">переговоров с предпринимателями</span></article>
+        <article class="stat reveal"><strong class="stat-value">20<span style="font-size:.5em;letter-spacing:0"> мин</span></strong><span class="stat-label">примерный хронометраж фильма</span></article>
+        <article class="stat reveal"><strong class="stat-value">2023</strong><span class="stat-label">начал изучать Java, Kotlin и Python в Geeks</span></article>
+        <article class="stat reveal"><strong class="stat-value">2025</strong><span class="stat-label">начал изучать китайский язык</span></article>
+      </div>
+      <div class="timeline reveal" aria-label="Хронология">
+        <div class="timeline-row"><span class="timeline-year">2023</span><span class="timeline-copy">Начал изучать программирование в IT-школе Geeks.</span></div>
+        <div class="timeline-row"><span class="timeline-year">2025</span><span class="timeline-copy">Снял фильм об Исхаке Разакове и начал изучать китайский язык.</span></div>
+        <div class="timeline-row"><span class="timeline-year">СЕЙЧАС</span><span class="timeline-copy">Учусь на 2 курсе колледжа Ала-Тоо и веду Level Up Bilim.</span></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="contact">
+    <span class="footer-title">КОНТАКТЫ И ССЫЛКИ</span>
+    <div class="footer-links">
+      <a href="https://www.instagram.com/nurbol_jentle/" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
+      <a href="https://github.com/nurbol-jake" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+    </div>
+    <span class="copyright">© 2026 Нурбол</span>
+  </footer>
+
+  <script>
+    document.documentElement.classList.add("js");
+
+    const header = document.querySelector("#site-header");
+    const navLinks = [...document.querySelectorAll(".nav a")];
+    const sections = navLinks.map(link => document.querySelector(link.getAttribute("href"))).filter(Boolean);
+    const photo = document.querySelector("#hero-photo");
+    const photoImage = photo.querySelector("img");
+
+    photoImage.addEventListener("error", () => photo.classList.add("image-missing"));
+
+    const updateHeader = () => header.classList.toggle("scrolled", window.scrollY > 12);
+    updateHeader();
+    window.addEventListener("scroll", updateHeader, { passive: true });
+
+    if ("IntersectionObserver" in window) {
+      const revealObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      document.querySelectorAll(".reveal").forEach(element => revealObserver.observe(element));
+
+      const sectionObserver = new IntersectionObserver(entries => {
+        const current = entries.filter(entry => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (!current) return;
+        navLinks.forEach(link => link.classList.toggle("active", link.getAttribute("href") === `#${current.target.id}`));
+      }, { rootMargin: "-20% 0px -60% 0px", threshold: [0, 0.2, 0.5] });
+      sections.forEach(section => sectionObserver.observe(section));
+    } else {
+      document.querySelectorAll(".reveal").forEach(element => element.classList.add("visible"));
+    }
+  </script>
+</body>
+</html>
